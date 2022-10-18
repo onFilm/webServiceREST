@@ -1,43 +1,70 @@
 package commonUtils.configUtils;
 
+import commonUtils.JsonParser;
 import commonUtils.constants.Environment;
+import org.json.simple.JSONObject;
 
 import java.util.Properties;
 
 public class ConfigLoader {
-    private final Properties properties;
     private static ConfigLoader configLoader;
+    private final Properties properties;
+    private final JSONObject userDetails;
 
     private ConfigLoader() {
-        String env = System.getProperty("environment", Environment.QA);
-        switch (env) {
-            case "qa": {
-                    try {
-                        properties = PropertiesUtil.loadProperties(getClass().getResourceAsStream("/qa_config.properties"));
-                    }catch (Exception e) {
-                        throw new IllegalStateException("Failed to load properties from Classpath");
-                    }
-                }
-                break;
-            case "prod": {
-                    try {
-                        properties = PropertiesUtil.loadProperties(getClass().getResourceAsStream("/prod_config.properties"));
-                    }catch (Exception e) {
-                        throw new IllegalStateException("Failed to load properties from Classpath");
-                    }
-                break;
-            }
-            default: throw new IllegalStateException("Invalid environment : " + env + ", please pass either qa or prod");
-        }
+        properties = loadConfigFile();
+        userDetails = loadUserDetailsJson();
     }
+
     public static ConfigLoader getInstance() {
-        if(configLoader == null) {
+        if (configLoader == null) {
             configLoader = new ConfigLoader();
         }
         return configLoader;
     }
 
-    public String getPropertyValue(String key) {
+    public Properties loadConfigFile() {
+        Properties properties;
+        String environment = System.getProperty("environment", Environment.QA);
+        switch (environment) {
+            case "prod": {
+                properties = PropertiesUtil.loadProperties("prod_config.properties");
+                break;
+            }
+            case "int": {
+                properties = PropertiesUtil.loadProperties("int_config.properties");
+                break;
+            }
+            case "qa": {
+                properties = PropertiesUtil.loadProperties("qa_config.properties");
+                break;
+            }
+            default:
+                throw new IllegalStateException("Invalid environment : " + environment);
+        }
+        return properties;
+    }
+
+    /**
+     * Pass key to get value from Properties file
+     *
+     * @param key
+     * @return String
+     */
+    public String getValue(String key) {
         return properties.getProperty(key);
     }
+
+    public JSONObject loadUserDetailsJson() {
+        return JsonParser.jsonParser("user_details.json");
+    }
+
+    public String getUserName(String user) {
+        return (String) ((JSONObject) userDetails.get(user)).get("username");
+    }
+
+    public String getPassword(String user) {
+        return (String) ((JSONObject) userDetails.get(user)).get("password");
+    }
 }
+

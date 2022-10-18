@@ -1,0 +1,10 @@
+{
+  "credential_one": {
+     "username": "credential_one@gmail.com",
+     "password": "credential_one"
+  },
+  "credential_two": {
+    "username": "credential_two@gmail.com",
+    "password": "credential_two"
+  }
+}
