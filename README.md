@@ -1,5 +1,7 @@
 # webServiceREST
 
+[![Java CI with Maven](https://github.com/onFilm/webServiceREST/actions/workflows/maven.yml/badge.svg)](https://github.com/onFilm/webServiceREST/actions/workflows/maven.yml)
+
 # REST Assured  </br>
 stands for Representational State Transfer. (It is sometimes spelled "ReST".) </br>
 A RESTful API is an application program interface (API) that uses HTTP requests to GET, PUT, POST and DELETE data.
@@ -86,7 +88,7 @@ Engineer needs to find the correct step to use it.
 # To execute the script:
 
 * Run the ```TestRunner.java``` for testUtils package
-* or run as jar using ```java -jar -Dtags=@test webServiceREST.jar```
+* or run as jar using ```java -jar -Dtags=@test ./target/webServiceREST-1.0-SNAPSHOT.jar```
 
 # Extraction using Groovy path
 

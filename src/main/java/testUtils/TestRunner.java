@@ -18,8 +18,7 @@ public class TestRunner extends AbstractTestNGCucumberTests {
         System.out.println("Tags: " + tags);
         Main.main(
                 "--plugin", "pretty",
-                "--plugin", "html:reports/cucumber-report.html",
-                "--plugin", "json:reports/cucumber-report.json",
+                "--plugin", "html:reports/index.html",
                 "--glue", "steps_definition",
                 "--glue", "commonutils",
                 "--tags", tags,
