@@ -16,7 +16,7 @@ jobs:
 
     services:
       service1:
-        image: mail2prajwal12:node-express-rest-api
+        image: mail2prajwal12/node-express-rest-api:latest
         ports:
           - 3000:3000
     steps:
