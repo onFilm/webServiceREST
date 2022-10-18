@@ -19,7 +19,7 @@ jobs:
         image: mail2prajwal12/node-express-rest-api:latest
         ports:
           - 3000:3000
-          -
+
     steps:
       - name: Git Checkout
         uses: actions/checkout@v3
