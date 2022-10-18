@@ -19,21 +19,29 @@ jobs:
         image: mail2prajwal12/node-express-rest-api:latest
         ports:
           - 3000:3000
+          -
     steps:
-    - name: Git Checkout
-      uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3  
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-    - name: Test the docker image
-      run: curl --location --request GET 'localhost:3000/calculator/subtraction?num1=4&num2=2'
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    - name: Deploy cucumber report to gh-pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./reports/
+      - name: Git Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Test the docker image
+        run: curl --location --request GET 'localhost:3000/calculator/subtraction?num1=4&num2=2'
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Run Tests
+        run: java -jar -Dtags=@test webServiceREST-1.0-SNAPSHOT-shaded.jar
+
+      - name: Deploy cucumber report to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports
