@@ -14,6 +14,11 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      service1:
+        image: mail2prajwal12:node-express-rest-api
+        ports:
+          - 3000:3000
     steps:
     - name: Git Checkout
       uses: actions/checkout@v3
@@ -23,8 +28,8 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
-    - name: Use node-express-rest-api:latest docker image
-      uses: docker://mail2prajwal12/node-express-rest-api:latest
+    - name: Test the docker image
+      run: http://localhost:3000/calculator/subtraction?num1=2&num2=2
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Deploy cucumber report to gh-pages
