@@ -24,7 +24,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Use node-express-rest-api:latest docker image
-    - uses: docker://mail2prajwal12/node-express-rest-api:latest
+      uses: docker://mail2prajwal12/node-express-rest-api:latest
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Deploy cucumber report to gh-pages
