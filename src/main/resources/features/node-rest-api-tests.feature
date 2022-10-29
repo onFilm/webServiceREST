@@ -1,8 +1,10 @@
 Feature: This feature written to test the apis developed in node-rest-api
 
+  Background: Setup endpoint
+    Given I define the endpoint from Properties file for the environment passed at runtime
+
   @sum @addition @test
   Scenario: verify addition of two numbers
-    Given I define the endpoint "http://localhost:3000"
     And I store the below query parameters
       | num1 | 5  |
       | num2 | 10 |
@@ -13,7 +15,6 @@ Feature: This feature written to test the apis developed in node-rest-api
 
   @sub @subtraction @test
   Scenario: verify subtraction of two numbers
-    Given I define the endpoint "http://localhost:3000"
     And I store the below query parameters
       | num1 | 5  |
       | num2 | 10 |
@@ -24,7 +25,6 @@ Feature: This feature written to test the apis developed in node-rest-api
 
   @mul @multiplication @test
   Scenario: verify multiplication of two numbers
-    Given I define the endpoint "http://localhost:3000"
     And I store the below query parameters
       | num1 | 5  |
       | num2 | 10 |
@@ -35,7 +35,6 @@ Feature: This feature written to test the apis developed in node-rest-api
 
   @del @deletion @test
   Scenario: verify division of two numbers
-    Given I define the endpoint "http://localhost:3000"
     And I store the below query parameters
       | num1 | 5  |
       | num2 | 10 |

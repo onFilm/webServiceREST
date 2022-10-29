@@ -19,6 +19,11 @@ public class Given_Steps {
         GlobalVariables.requestSpec = new RequestSpecBuilder().setBaseUri(GlobalVariables.config.getValue(key)).setBasePath(basePath);
     }
 
+    @Given("^I define the endpoint from Properties file for the environment passed at runtime$")
+    public void iDefinedEndpointFromProp() {
+        GlobalVariables.requestSpec = GlobalVariables.requestSpec.setBaseUri(GlobalVariables.config.getBaseURL());
+    }
+
     @Given("^I define the endpoint \"(.*)\"$")
     public void iDefinedEndpoint(String endpoint) {
         GlobalVariables.requestSpec = GlobalVariables.requestSpec.setBaseUri(endpoint);
