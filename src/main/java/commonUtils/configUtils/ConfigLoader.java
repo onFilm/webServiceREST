@@ -25,7 +25,7 @@ public class ConfigLoader {
 
     public Properties loadConfigFile() {
         Properties properties;
-        String environment = System.getProperty("environment", Environment.QA);
+        String environment = System.getProperty("env", Environment.INT);
         switch (environment) {
             case "prod": {
                 properties = PropertiesUtil.loadProperties("prod_config.properties");
@@ -65,6 +65,10 @@ public class ConfigLoader {
 
     public String getPassword(String user) {
         return (String) ((JSONObject) userDetails.get(user)).get("password");
+    }
+
+    public String getBaseURL() {
+        return properties.getProperty("baseURL");
     }
 }
 
