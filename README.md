@@ -1,6 +1,6 @@
 # webServiceREST
 
-[![Java CI with Maven](https://github.com/onFilm/webServiceREST/actions/workflows/maven.yml/badge.svg)](https://github.com/onFilm/webServiceREST/actions/workflows/maven.yml)
+[![CICD-Main](https://github.com/onFilm/webServiceREST/actions/workflows/cicd-main.yml/badge.svg)](https://github.com/onFilm/webServiceREST/actions/workflows/cicd-main.yml)
 
 # REST Assured  </br>
 stands for Representational State Transfer. (It is sometimes spelled "ReST".) </br>
