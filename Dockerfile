@@ -3,6 +3,6 @@ WORKDIR /src
 MAINTAINER mail2prajwal12
 COPY . /src
 RUN mvn -B package --file /src/pom.xml
-COPY ./target/webServiceREST-1.0-SNAPSHOT.jar /app.jar
-RUN apk add tree && tree -d /
+RUN cp /src/target/webServiceREST-1.0-SNAPSHOT.jar /src/app.jar
+RUN apk add tree && tree /src
 ENTRYPOINT ["java","-jar","-Dtags=@test","-Denv=int","/src/app.jar"]
