@@ -13,7 +13,7 @@ import org.testng.annotations.DataProvider;
 public class TestRunner extends AbstractTestNGCucumberTests {
 
     public static void main(String[] args) {
-        System.setProperty("CUCUMBER_PUBLISH_ENABLED", "false");
+        System.setProperty("CUCUMBER_PUBLISH_ENABLED", "true");
         String tags = System.getProperty("tags", "@test");
         System.out.println("Tags: " + tags);
         Main.main(
